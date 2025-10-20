@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b4/random_picker/random_picker_screen.dart';
+import 'package:ppkd_b4/day_15/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: const RandomPickerScreen(),
+      home: const LoginScreen(),
     );
   }
 }
