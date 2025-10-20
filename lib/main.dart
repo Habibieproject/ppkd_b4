@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b4/day_15/login_screen.dart';
+import 'package:ppkd_b4/day_15/bot_nav_custom.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: const LoginScreen(),
+      home: const BottomNavCustomDay15(),
     );
   }
 }

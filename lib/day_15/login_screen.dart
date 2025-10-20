@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ppkd_b4/day_15/home_screen.dart';
 import 'package:ppkd_b4/widgets/login_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreenDay15 extends StatefulWidget {
+  const LoginScreenDay15({super.key});
   static const id = "/login";
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginScreenDay15> createState() => _LoginScreenDay15State();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenDay15State extends State<LoginScreenDay15> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isVisibility = false;
@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   login() async {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreenDay15()),
     );
   }
 
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => HomeScreenDay15()),
                   );
                 },
               ),

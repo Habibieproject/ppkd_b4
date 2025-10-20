@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b4/day_10/stack.dart';
 import 'package:ppkd_b4/day_12/state/state_2.dart';
+import 'package:ppkd_b4/day_15/bot_nav_custom.dart';
+import 'package:ppkd_b4/day_7/column.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreenDay15 extends StatelessWidget {
+  const HomeScreenDay15({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,17 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: Text("Back to Login"),
+            ),
+          ),
+          Center(
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ColumnWidgetDay7()),
+                );
+              },
+              child: Text("Go To Day 7"),
             ),
           ),
           Center(
@@ -44,6 +57,19 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text("Go To Day 10"),
+            ),
+          ),
+          Center(
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BottomNavCustomDay15(),
+                  ),
+                );
+              },
+              child: Text("Go To BotNav Custom"),
             ),
           ),
         ],
