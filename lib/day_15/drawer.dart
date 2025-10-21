@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b4/day_10/grid/gridview_builder.dart';
-import 'package:ppkd_b4/day_12/state/state_1.dart';
-import 'package:ppkd_b4/day_15/home_screen.dart';
+import 'package:ppkd_b4/day_16/input_widget.dart';
 
 class DrawerWidgetDay15 extends StatefulWidget {
   const DrawerWidgetDay15({super.key});
@@ -14,9 +12,7 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = [
     // Center(child: Text("Home")),
-    HomeScreenDay15(),
-    GridViewWidgetDay10(),
-    State1Day12(),
+    InputWidgetDay16(),
   ];
   void onTapDrawer(int index) {
     setState(() {
@@ -46,16 +42,9 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
                 onTapDrawer(0);
               },
               leading: Icon(Icons.home),
-              title: Text("Home"),
+              title: Text("Input Widget"),
             ),
             Divider(),
-            ListTile(
-              onTap: () {
-                onTapDrawer(1);
-              },
-              leading: Icon(Icons.payment),
-              title: Text("Payment"),
-            ),
           ],
         ),
       ),

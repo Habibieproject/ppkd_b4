@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b4/day_15/drawer.dart';
 import 'package:ppkd_b4/day_15/home_screen.dart';
 import 'package:ppkd_b4/widgets/login_button.dart';
 
@@ -89,7 +90,9 @@ class _LoginScreenDay15State extends State<LoginScreenDay15> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreenDay15()),
+                    MaterialPageRoute(
+                      builder: (context) => DrawerWidgetDay15(),
+                    ),
                   );
                 },
               ),

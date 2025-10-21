@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b4/day_15/bot_nav_custom.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:ppkd_b4/day_15/login_screen.dart';
 
-void main() {
+void main() async {
+  await initializeDateFormatting('id_ID', null);
   runApp(const MyApp());
 }
 
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: const BottomNavCustomDay15(),
+      home: const LoginScreenDay15(),
     );
   }
 }
