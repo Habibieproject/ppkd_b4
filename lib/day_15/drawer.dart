@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b4/day_16/input_widget.dart';
+import 'package:ppkd_b4/day_17/listview_list.dart';
+import 'package:ppkd_b4/day_17/listview_list_map.dart';
+import 'package:ppkd_b4/day_17/listview_model.dart';
 
 class DrawerWidgetDay15 extends StatefulWidget {
   const DrawerWidgetDay15({super.key});
@@ -13,6 +16,9 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
   static const List<Widget> _widgetOptions = [
     // Center(child: Text("Home")),
     InputWidgetDay16(),
+    ListviewListWidgetDay17(),
+    ListviewListMapWidgetDay17(),
+    ListviewListModelWidgetDay17(),
   ];
   void onTapDrawer(int index) {
     setState(() {
@@ -43,6 +49,30 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
               },
               leading: Icon(Icons.home),
               title: Text("Input Widget"),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(1);
+              },
+              leading: Icon(Icons.list),
+              title: Text("ListViewList Widget"),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(2);
+              },
+              leading: Icon(Icons.list),
+              title: Text("ListViewListMap Widget"),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(3);
+              },
+              leading: Icon(Icons.list),
+              title: Text("ListViewModel Widget"),
             ),
             Divider(),
           ],
