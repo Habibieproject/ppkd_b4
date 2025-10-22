@@ -6,8 +6,8 @@ import 'package:ppkd_b4/day_15/drawer.dart';
 import 'package:ppkd_b4/day_15/home_screen.dart';
 
 class BottomNavCustomDay15 extends StatefulWidget {
-  const BottomNavCustomDay15({super.key});
-
+  const BottomNavCustomDay15({super.key, required this.email});
+  final String email;
   @override
   State<BottomNavCustomDay15> createState() => _BottomNavCustomDay15State();
 }
@@ -23,7 +23,7 @@ class _BottomNavCustomDay15State extends State<BottomNavCustomDay15> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text("Bottom Navigation")),
+      appBar: AppBar(title: Text(widget.email)),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColor.primaryColor,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b4/day_10/stack.dart';
 import 'package:ppkd_b4/day_12/state/state_2.dart';
-import 'package:ppkd_b4/day_15/bot_nav_custom.dart';
 import 'package:ppkd_b4/day_7/column.dart';
 
 class HomeScreenDay15 extends StatelessWidget {
@@ -62,12 +61,12 @@ class HomeScreenDay15 extends StatelessWidget {
           Center(
             child: TextButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BottomNavCustomDay15(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => BottomNavCustomDay15(),
+                //   ),
+                // );
               },
               child: Text("Go To BotNav Custom"),
             ),
