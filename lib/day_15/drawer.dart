@@ -3,6 +3,8 @@ import 'package:ppkd_b4/day_16/input_widget.dart';
 import 'package:ppkd_b4/day_17/listview_list.dart';
 import 'package:ppkd_b4/day_17/listview_list_map.dart';
 import 'package:ppkd_b4/day_17/listview_model.dart';
+import 'package:ppkd_b4/day_18/login_screen_18.dart';
+import 'package:ppkd_b4/preferences/preference_handler.dart';
 
 class DrawerWidgetDay15 extends StatefulWidget {
   const DrawerWidgetDay15({super.key});
@@ -75,6 +77,19 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
               title: Text("ListViewModel Widget"),
             ),
             Divider(),
+            Divider(),
+            ListTile(
+              onTap: () {
+                PreferenceHandler.removeLogin();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreenDay18()),
+                  (route) => false,
+                );
+              },
+              leading: Icon(Icons.outbond),
+              title: Text("LogOut"),
+            ),
           ],
         ),
       ),
