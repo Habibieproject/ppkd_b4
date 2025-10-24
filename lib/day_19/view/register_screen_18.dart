@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ppkd_b4/day_15/drawer.dart';
-import 'package:ppkd_b4/day_15/home_screen.dart';
 import 'package:ppkd_b4/day_19/database/db_helper.dart';
-import 'package:ppkd_b4/day_19/view/register_screen_18.dart';
-import 'package:ppkd_b4/preferences/preference_handler.dart';
+import 'package:ppkd_b4/day_19/model/user_model.dart';
 import 'package:ppkd_b4/widgets/login_button.dart';
 
 //Bahas Shared Preference
-class LoginScreenDay18 extends StatefulWidget {
-  const LoginScreenDay18({super.key});
-  static const id = "/login_screen18";
+class RegisterScreenDay19 extends StatefulWidget {
+  const RegisterScreenDay19({super.key});
+  static const id = "/register";
   @override
-  State<LoginScreenDay18> createState() => _LoginScreenDay18State();
+  State<RegisterScreenDay19> createState() => _RegisterScreenDay19State();
 }
 
-class _LoginScreenDay18State extends State<LoginScreenDay18> {
+class _RegisterScreenDay19State extends State<RegisterScreenDay19> {
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isVisibility = false;
   @override
@@ -24,12 +22,12 @@ class _LoginScreenDay18State extends State<LoginScreenDay18> {
     return Scaffold(body: Stack(children: [buildBackground(), buildLayer()]));
   }
 
-  login() async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreenDay15()),
-    );
-  }
+  // register() async {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => HomeScreenDay15()),
+  //   );
+  // }
 
   final _formKey = GlobalKey<FormState>();
   SafeArea buildLayer() {
@@ -44,15 +42,29 @@ class _LoginScreenDay18State extends State<LoginScreenDay18> {
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Welcome Back",
+                  "Welcome",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 height(12),
                 Text(
-                  "Login to access your account",
+                  "Register to access your account",
                   // style: TextStyle(fontSize: 14, color: AppColor.gray88),
                 ),
                 height(24),
+                buildTitle("Username"),
+                height(12),
+                buildTextField(
+                  hintText: "Enter your username",
+                  controller: usernameController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Username tidak boleh kosong";
+                    }
+                    return null;
+                  },
+                ),
+
+                height(16),
                 buildTitle("Email Address"),
                 height(12),
                 buildTextField(
@@ -88,77 +100,51 @@ class _LoginScreenDay18State extends State<LoginScreenDay18> {
                     return null;
                   },
                 ),
-                height(12),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                      // );
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => MeetSebelas()),
-                      // );
-                    },
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                        fontSize: 12,
-                        // color: AppColor.orange,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
                 height(24),
                 LoginButton(
-                  text: "Login",
-                  onPressed: () async {
+                  text: "Register",
+                  onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       print(emailController.text);
-                      PreferenceHandler.saveLogin(true);
-                      final data = await DbHelper.loginUser(
+                      final UserModel data = UserModel(
                         email: emailController.text,
+                        username: usernameController.text,
                         password: passwordController.text,
                       );
-                      if (data != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DrawerWidgetDay15(),
-                          ),
-                        );
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: "Email atau password salah",
-                        );
-                      }
+                      DbHelper.registerUser(data);
+                      Fluttertoast.showToast(msg: "Register Berhasil");
+                      // PreferenceHandler.saveLogin(true);
+                      Navigator.pop(context);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => DrawerWidgetDay15(),
+                      //   ),
+                      // );
                     } else {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("Validation Error"),
-                            content: Text("Please fill all fields"),
-                            actions: [
-                              TextButton(
-                                child: Text("OK"),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              TextButton(
-                                child: Text("Ga OK"),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (context) {
+                      //     return AlertDialog(
+                      //       title: Text("Validation Error"),
+                      //       content: Text("Please fill all fields"),
+                      //       actions: [
+                      //         TextButton(
+                      //           child: Text("OK"),
+                      //           onPressed: () {
+                      //             Navigator.pop(context);
+                      //           },
+                      //         ),
+                      //         TextButton(
+                      //           child: Text("Ga OK"),
+                      //           onPressed: () {
+                      //             Navigator.pop(context);
+                      //           },
+                      //         ),
+                      //       ],
+                      //     );
+                      //   },
+                      // );
                     }
                   },
                 ),
@@ -173,80 +159,20 @@ class _LoginScreenDay18State extends State<LoginScreenDay18> {
                 //   },
                 // ),
                 height(16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(right: 8),
-                        height: 1,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      "Or Sign In With",
-                      // style: TextStyle(fontSize: 12, color: AppColor.gray88),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 8),
 
-                        height: 1,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-
-                height(16),
-                SizedBox(
-                  height: 48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                    ),
-                    onPressed: () {
-                      // Navigate to MeetLima screen menggunakan pushnamed
-                      Navigator.pushNamed(context, "/meet_2");
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/images/icon_google.png",
-                          height: 16,
-                          width: 16,
-                        ),
-                        width(4),
-                        Text("Google"),
-                      ],
-                    ),
-                  ),
-                ),
-                height(16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      "Have an account?",
                       // style: TextStyle(fontSize: 12, color: AppColor.gray88),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterScreenDay19(),
-                          ),
-                        );
-                        // context.push(RegisterScreen());
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => MeetEmpatA()),
-                        // );
+                        Navigator.of(context).pop();
                       },
                       child: Text(
-                        "Sign Up",
+                        "Sign In",
                         style: TextStyle(
                           // color: AppColor.blueButton,
                           fontSize: 12,

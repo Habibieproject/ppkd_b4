@@ -4,6 +4,7 @@ import 'package:ppkd_b4/day_17/listview_list.dart';
 import 'package:ppkd_b4/day_17/listview_list_map.dart';
 import 'package:ppkd_b4/day_17/listview_model.dart';
 import 'package:ppkd_b4/day_18/login_screen_18.dart';
+import 'package:ppkd_b4/day_19/view/create_student.dart';
 import 'package:ppkd_b4/preferences/preference_handler.dart';
 
 class DrawerWidgetDay15 extends StatefulWidget {
@@ -21,6 +22,7 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
     ListviewListWidgetDay17(),
     ListviewListMapWidgetDay17(),
     ListviewListModelWidgetDay17(),
+    CRWidgetDay19(),
   ];
   void onTapDrawer(int index) {
     setState(() {
@@ -77,6 +79,13 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
               title: Text("ListViewModel Widget"),
             ),
             Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(4);
+              },
+              leading: Icon(Icons.list),
+              title: Text("CR DB Widget"),
+            ),
             Divider(),
             ListTile(
               onTap: () {

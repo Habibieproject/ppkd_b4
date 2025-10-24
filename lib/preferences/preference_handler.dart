@@ -4,6 +4,7 @@ class PreferenceHandler {
   static const String isLogin = "isLogin";
 
   //Save data login pada saat login
+
   static saveLogin(bool value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(isLogin, value);
