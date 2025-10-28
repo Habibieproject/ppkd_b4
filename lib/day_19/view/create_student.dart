@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ppkd_b4/constant/app_image.dart';
 import 'package:ppkd_b4/day_19/database/db_helper.dart';
 import 'package:ppkd_b4/day_19/model/student_model.dart';
 import 'package:ppkd_b4/widgets/login_button.dart';
@@ -19,6 +20,99 @@ class _CRWidgetDay19State extends State<CRWidgetDay19> {
   getData() {
     DbHelper.getAllStudent();
     setState(() {});
+  }
+
+  Future<void> _onEdit(StudentModel student) async {
+    final editNameC = TextEditingController(text: student.name);
+    final editAgeC = TextEditingController(text: student.age.toString());
+    final editClasssC = TextEditingController(text: student.classs);
+    final editEmailC = TextEditingController(text: student.email);
+    final res = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Edit Data"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 12,
+            children: [
+              buildTextField(hintText: "Name", controller: editNameC),
+              buildTextField(hintText: "Email", controller: editEmailC),
+              buildTextField(hintText: "Age", controller: editAgeC),
+              buildTextField(hintText: "Classs", controller: editClasssC),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Batal"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: Text("Simpan"),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (res == true) {
+      final updated = StudentModel(
+        id: student.id,
+        name: editNameC.text,
+        email: editEmailC.text,
+        classs: editClasssC.text,
+        age: int.parse(editAgeC.text),
+      );
+      DbHelper.updateStudent(updated);
+      getData();
+      Fluttertoast.showToast(msg: "Data berhasil di update");
+    }
+  }
+
+  Future<void> _onDelete(StudentModel student) async {
+    final res = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Hapus Data"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 12,
+            children: [
+              Text(
+                "Apakah anda yakin ingin menghapus data ${student.name}?",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Jangan"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: Text("Ya, hapus aja"),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (res == true) {
+      DbHelper.deleteStudent(student.id!);
+      getData();
+      Fluttertoast.showToast(msg: "Data berhasil di hapus");
+    }
   }
 
   @override
@@ -69,6 +163,14 @@ class _CRWidgetDay19State extends State<CRWidgetDay19> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
+                } else if (snapshot.data == null || snapshot.data.isEmpty) {
+                  return Column(
+                    children: [
+                      Image.asset(AppImages.empty, height: 150),
+
+                      Text("Data belum ada"),
+                    ],
+                  );
                 } else {
                   final data = snapshot.data as List<StudentModel>;
                   return Expanded(
@@ -81,6 +183,23 @@ class _CRWidgetDay19State extends State<CRWidgetDay19> {
                             ListTile(
                               title: Text(items.name),
                               subtitle: Text(items.email),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      _onEdit(items);
+                                    },
+                                    icon: Icon(Icons.edit),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      _onDelete(items);
+                                    },
+                                    icon: Icon(Icons.delete, color: Colors.red),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         );

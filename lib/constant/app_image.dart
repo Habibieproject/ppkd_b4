@@ -5,4 +5,5 @@ class AppImages {
   static const durian = "$assetImage/durian.jpeg";
   static const apell = "$assetImage/apell.jpeg";
   static const jeruk = "$assetImage/jeruk.jpeg";
+  static const empty = "$assetImage/empty.png";
 }
