@@ -5,7 +5,9 @@ import 'package:ppkd_b4/day_17/listview_list_map.dart';
 import 'package:ppkd_b4/day_17/listview_model.dart';
 import 'package:ppkd_b4/day_18/login_screen_18.dart';
 import 'package:ppkd_b4/day_19/view/create_student.dart';
+import 'package:ppkd_b4/day_31/views/user_screen.dart';
 import 'package:ppkd_b4/preferences/preference_handler.dart';
+import 'package:ppkd_b4/random_picker/random_picker_screen.dart';
 
 class DrawerWidgetDay15 extends StatefulWidget {
   const DrawerWidgetDay15({super.key});
@@ -23,6 +25,8 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
     ListviewListMapWidgetDay17(),
     ListviewListModelWidgetDay17(),
     CRWidgetDay19(),
+    Day31UserScreen(),
+    RandomPickerScreen(),
   ];
   void onTapDrawer(int index) {
     setState(() {
@@ -85,6 +89,22 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
               },
               leading: Icon(Icons.list),
               title: Text("CR DB Widget"),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(5);
+              },
+              leading: Icon(Icons.list),
+              title: Text("Get API"),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(6);
+              },
+              leading: Icon(Icons.list),
+              title: Text("Random Picker"),
             ),
             Divider(),
             ListTile(
