@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b4/constant/app_image.dart';
 import 'package:ppkd_b4/day_15/drawer.dart';
+import 'package:ppkd_b4/day_34/views/register_screen.dart';
 import 'package:ppkd_b4/preferences/preference_handler.dart';
 
 class SplashScreenDay18 extends StatefulWidget {
@@ -21,19 +22,19 @@ class _SplashScreenDay18State extends State<SplashScreenDay18> {
     Future.delayed(Duration(seconds: 3)).then((value) async {
       var isLogin = await PreferenceHandler.getLogin();
       print(isLogin);
-      // if (isLogin != null && isLogin == true) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => DrawerWidgetDay15()),
-        (route) => false,
-      );
-      // } else {
-      //   Navigator.pushAndRemoveUntil(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => RegisterScreenDay33()),
-      //     (route) => false,
-      //   );
-      // }
+      if (isLogin != null && isLogin == true) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => DrawerWidgetDay15()),
+          (route) => false,
+        );
+      } else {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => RegisterScreenDay34()),
+          (route) => false,
+        );
+      }
     });
   }
 
