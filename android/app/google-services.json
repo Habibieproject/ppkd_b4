@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "51700030794",
+    "project_id": "ppkd-b4-project",
+    "storage_bucket": "ppkd-b4-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51700030794:android:364eaada8b6fc45542f5b3",
+        "android_client_info": {
+          "package_name": "com.ppkd.ppkd_b4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBykYDFz8DUpK8GdvTdUbCTe7mc-HhodOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
