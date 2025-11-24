@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b4/constant/app_image.dart';
 import 'package:ppkd_b4/day_15/drawer.dart';
-import 'package:ppkd_b4/day_34/views/register_screen.dart';
+import 'package:ppkd_b4/day_39/views/register_screen.dart';
 import 'package:ppkd_b4/preferences/preference_handler.dart';
 
 class SplashScreenDay18 extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SplashScreenDay18State extends State<SplashScreenDay18> {
       } else {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => RegisterScreenDay34()),
+          MaterialPageRoute(builder: (context) => RegisterScreenDay39()),
           (route) => false,
         );
       }

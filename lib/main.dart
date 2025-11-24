@@ -5,6 +5,7 @@ import 'package:ppkd_b4/day_18/splash_screen.dart';
 import 'package:ppkd_b4/firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('id_ID', null);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
