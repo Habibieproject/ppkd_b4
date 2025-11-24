@@ -26,4 +26,32 @@ class FirebaseService {
     await firestore.collection('users').doc(user.uid).set(model.toMap());
     return model;
   }
+
+  static Future<UserFirebaseModel?> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final cred = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = cred.user;
+      if (user == null) return null;
+      final snap = await firestore.collection('users').doc(user.uid).get();
+      if (!snap.exists) return null;
+      return UserFirebaseModel.fromMap({'uid': user.uid, ...snap.data()!});
+    } on FirebaseAuthException catch (e) {
+      // handle credential error → return null, biar UI bisa "Email/password salah"
+      if (e.code == 'invalid-credential' ||
+          e.code == 'wrong-password' ||
+          e.code == 'user-not-found') {
+        return null;
+      }
+
+      // kalau error lain (network, too-many-requests, dll) boleh kamu log
+      print('FirebaseAuthException: ${e.code} - ${e.message}');
+      rethrow; // biar ketauan saat debug
+    }
+  }
 }

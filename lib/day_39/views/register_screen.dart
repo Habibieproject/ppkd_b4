@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ppkd_b4/day_15/drawer.dart';
 import 'package:ppkd_b4/day_39/models/user_firebase_model.dart';
 import 'package:ppkd_b4/day_39/service/firebase.dart';
+import 'package:ppkd_b4/day_39/views/login_screen.dart';
 import 'package:ppkd_b4/extension/navigation.dart';
 import 'package:ppkd_b4/preferences/preference_handler.dart';
 import 'package:ppkd_b4/widgets/login_button.dart';
@@ -185,10 +186,10 @@ class _RegisterScreenDay39State extends State<RegisterScreenDay39> {
                       const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
-                          // TODO: ke halaman login / apapun
+                          context.push(LoginScreenDay39Firebase());
                         },
                         child: const Text(
-                          "Sign Up",
+                          "Sign In",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
