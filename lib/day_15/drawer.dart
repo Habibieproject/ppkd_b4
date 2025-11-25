@@ -7,6 +7,7 @@ import 'package:ppkd_b4/day_18/login_screen_18.dart';
 import 'package:ppkd_b4/day_19/view/create_student.dart';
 import 'package:ppkd_b4/day_31/views/user_screen.dart';
 import 'package:ppkd_b4/day_34/views/google_maps_screen.dart';
+import 'package:ppkd_b4/day_39/views/create_student_sreen.dart';
 import 'package:ppkd_b4/preferences/preference_handler.dart';
 import 'package:ppkd_b4/random_picker/random_picker_screen.dart';
 
@@ -29,6 +30,7 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
     Day31UserScreen(),
     RandomPickerScreen(),
     GoogleMapsScreenDay34(),
+    CRWidgetDay40Firebase(),
   ];
   void onTapDrawer(int index) {
     setState(() {
@@ -115,6 +117,14 @@ class _DrawerWidgetDay15State extends State<DrawerWidgetDay15> {
               },
               leading: Icon(Icons.list),
               title: Text("Google Map"),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                onTapDrawer(8);
+              },
+              leading: Icon(Icons.list),
+              title: Text("CR Firebase"),
             ),
             Divider(),
             ListTile(
